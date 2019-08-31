@@ -12,6 +12,7 @@ Car.prototype.drive = function(kilometers){
     this.oilNum = this.oilNum + kilometers;
     if (this.oilNum > 10000){
         console.log("Nalezy wymienic olej");
+        this.oilNum = 0;
     }
 }
 
