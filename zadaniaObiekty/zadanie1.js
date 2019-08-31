@@ -8,7 +8,7 @@ var Car = function(brand, color, year, distance, oilNum){
 
 Car.prototype.drive = function(kilometers){
     this.distance = this.distance + kilometers
-    console.log(this.distance);
+    console.log(`Przebieg wynosi ${this.distance}`);
     this.oilNum = this.oilNum + kilometers;
     if (this.oilNum > 10000){
         console.log("Nalezy wymienic olej");
