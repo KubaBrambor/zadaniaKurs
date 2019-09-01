@@ -1,55 +1,41 @@
-// 1.
-// Wyszukaj w podanej strukturze strony następujące elementy:
-// * kolekcje elementów zawierających klasy w postaci header-*
-// * Element o id searchicon. 
-// * Kolekcje elementów listy z menu nawigacyjnego. Ile znajduje się w niej elementów?
-// * Kolekcje paragrafów zawartych w obu artykułach. Ile ich jest? Czy można zbudować tak złożone zapytanie? Czy jest jakiś sposób łączenia wyników roznych zapytan?
-// * Wszystkie elementy posiadające atrybut data-check. ile ich jest?
-
-// Do każdego zadania spróbuj zastosować więcej niż jedną funkcję wyszukującą
-
-var getByClass = document.querySelectorAll('[class*=\'header\-\']');
-var elementId = document.getElementById("searchicon");
-
-var navBar = document.getElementsByTagName("nav");
-var list = navBar[0].getElementsByTagName("li");
-
-var articles = document.getElementsByTagName("article");
-var paraph1 = Array.from(articles[0].getElementsByTagName("p"));
-var paraph2 = Array.from(articles[1].getElementsByTagName("p"));
-var paraph3 = paraph2.concat(paraph1);
+// 2.2
+// Na stronie 2 brakuje kilku kluczowych elementów. Uzupelni je korzystajac z JavaScript:
+// 1. przyporzadkuj kazdemu artykulowi obrazek odpowiadajacy jego marce
+// 2. naglowek powinien miec swoj unikalny obrazek
+// 3. strona powinna miec tematyczne tlo
+// 4. elementy z menu bocznego TypSellers powinny po kliknieciu przekierowywać strone producenta danej marki
+// 5. elementy menu powinny się wyswietlać w jednej linii. popraw kod dopisujac do listy odpowiednia klase zdefiniowana w css
 
 
+// 3.1
+// Korzystająć z JavaScript:
+// 1. dodaj kolejną pozycję do menu TopSellers na końcu listy.
+// 2. dodaj kolejną pozycję do menu TopSellers na 2. miejscu listy
+// 3. podmien pozycje dealerzy w menu głównym (nav)  na 'kontakt'
+// 4. podmien slogan pod każdym tytułem artykułu na wybraną przez siebie treść.
+// 5. usun ostatni element TopSellers.
+// 6. usun drugi artykuł
 
-// Zwróć listę klas elementu span, będącęgo dzieckiem elementu o klasie "cart" w header-top menu. Zastosuj metody zwracającą pojedynczy ciąg znaków i kolekcje
-//     a) Czy możesz sprawdzić czy ten element posiada swoje unikalne Id?
-// * Zwróć kod HTML wewnątrz drugiego paragrafu, w drugim artykule.
-//     a) bez elementu zawierającego
-//     b) wraz z elementem zawierającym
-// * Zwroc listę atrybutów elementu img o klasie article-image
-// * Zwroc listę atrybutów elementu a o klasie brand
-// * Zwroc wartosc atrybutów,jeśli istnieje, background dla elementó product-inner-wrap
-//     *nie powinno się stosowac takich atrybutów! usun go w kodzie JS
+var topSellers = document.querySelector("section.popular-recipes");
+var newPosition = document.createElement("a");
+var newPositionText = newPosition.innerText = "pozycja1";
+topSellers.appendChild(newPositionText);
 
+var a2 = topSellers.querySelector("a:nth-of-type(2)");
+topSellers.insertBefore(newPosition, a2);
 
-var takeOne = document.querySelector(".cart");
-var takeSpan = takeOne.getElementsByTagName("span");
-var spanClassList = takeSpan[0].classList;
-var spanId = takeSpan[0].id;
+var navMenu = document.querySelector("nav ul li:nth-of-type(4)");
+navMenu.innerHTML="kontakt"
 
-var getArticle = document.querySelector("article:nth-of-type(2)");
-// ------------------------------------------------------------------
-// var getArticle = document.querySelector("article:nth-of-type(2) p:nth-of-type(2)");
-// ------------------------------------------------------------------
-var getParaph = getArticle.querySelector("p:nth-of-type(2)");
-var theInnerHTML = getParaph.innerHTML;
-var theOuterHTML = getParaph.outerHTML;
+var h3 = document.getElementsByTagName("h3");
+h3[0].innerHTML = "Mercedes jest kiepski";
+h3[1].innerHTML = "BMW jest dla wiesniackie";
+h3[2].innerHTML = "Skoda jest kozak";
 
-var getImg = document.querySelector(".article-image");
-var getImgAtt = getImg.attributes;
+topSellers.replaceChild(topSellers.querySelector(`a:last-of-type`));
 
-
-
-
-
-
+https://www.w3schools.com/cssref/sel_last-of-type.asp
+https://www.w3schools.com/jsref/prop_html_innerhtml.asp
+https://www.w3schools.com/cssref/sel_nth-of-type.asp
+https://www.w3schools.com/css/css_attribute_selectors.asp
+https://www.w3schools.com/jsref/met_document_queryselectorall.asp
