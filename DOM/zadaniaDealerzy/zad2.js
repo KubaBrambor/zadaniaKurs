@@ -12,7 +12,12 @@ headImg.setAttribute("src", "panorama.jpg");
 document.querySelector("div.wrapper").insertBefore(headImg, document.querySelector("div.wrapper").children[0]);
 
 // 3. strona powinna miec tematyczne tlo
+document.getElementsByTagName("body")[0].setAttribute("style", "background-image: url('background.jpg')");
 // 4. elementy z menu bocznego TypSellers powinny po kliknieciu przekierowywać strone producenta danej marki
+var asideMenu = document.querySelectorAll("aside section.popular-recipes a");
+asideMenu[0].setAttribute("href", "https:\\www.lada.ru");
+asideMenu[1].setAttribute("href", "https:\\www.audi.com");
+asideMenu[2].setAttribute("href", "https:\\www.skoda-auto.com");
 // 5. elementy menu powinny się wyswietlać w jednej linii. popraw kod dopisujac do listy odpowiednia klase zdefiniowana w css
 var elementMenu = document.querySelector("header nav ul");
 elementMenu.setAttribute("class", "menu-items");
