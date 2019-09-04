@@ -19,10 +19,10 @@ newLi.innerText = "kontakt";
 menuNav.replaceChild(newLi, menuNav.children[3]);
 
 // 4. podmien slogan pod każdym tytułem artykułu na wybraną przez siebie treść.
-var h3 = document.getElementsByTagName("h3");
-h3[0].innerHTML = "Mercedes jest kiepski";
-h3[1].innerHTML = "BMW jest dla wiesniackie";
-h3[2].innerHTML = "Skoda jest kozak";
+var h3 = document.getElementsByTagName("h3");    //lub var h3 = document.querySelectorAll("hgroup h3");
+h3[0].innerText = "Mercedes jest kiepski";
+h3[1].innerText = "BMW jest dla wiesniackie";
+h3[2].innerText = "Skoda jest kozak";
 
 // 5. usun ostatni element TopSellers.
 topSellers.removeChild(topSellers.lastElementChild);
