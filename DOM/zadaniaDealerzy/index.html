@@ -150,14 +150,16 @@
 			<aside>
 				<section class="popular-recipes">
 					<h2>Top sellers</h2>
+					<button id="sideButton">Usuń</button>
 					<a href="">LADA</a>
 					<a href="">Audi</a>
 					<a href="">Skoda</a>
+					<input type="text" id="inputWindow" placeholder="Nowy element...">
+					<button id="submitButton">Dodaj</button>
 				</section>
 				<section class="contact-details">
 					<h2>Contact</h2>
 					<p>
-						
 						Calista Wise<br>
 						7292 Dictum Av.<br>
 						San Antonio MI 47096<br>
@@ -170,14 +172,14 @@
 				DOM L2C
 			</footer>
 		</div><!-- .wrapper -->
-	<!-- <script src="zad2.js"></script> -->
+	<script src="zad2.js"></script>
 	<!-- <script>
 		var getAside = document.querySelectorAll("aside");
 		var topSellers = getAside[0].childNodes[1].children;
 	</script> -->
 
 	<script>
-
+	// zadanie 2.
 	var getArticle = document.getElementsByTagName("article");
 	var colorArr = ["black", "red", "blue", "yellow", "pink", "brown", "purple"];
 	function changeColor(event){
@@ -192,6 +194,35 @@
 	
 	for(let i=0; i<getArticle.length; i++){
 	getArticle[i].addEventListener("click", changeColor);
-	}	
+	}
+	
+	// zadanie 4.
+	var sideButton = document.getElementById("sideButton");
+	
+	function removeElement(){
+		setTimeout(function(){
+		document.getElementsByClassName("popular-recipes")[0].removeChild(document.querySelector(".popular-recipes a:last-of-type"));
+		var comm = alert("Usunięto element!");
+		}, 2000);
+	}
+
+	sideButton.addEventListener("click", removeElement);
+
+	// zadanie 5.
+	var submitButton = document.getElementById("submitButton");
+	var inputText = document.getElementById("inputWindow");
+	function addValue(){
+		var newObj = document.createElement("a");
+		newObj.innerText = inputText.value;
+		
+		if(inputText.value !== ""){
+		document.getElementsByClassName("popular-recipes")[0].insertBefore(newObj, inputText);
+		} else {
+			alert("Wpisz nazwę nowego elementu!");
+		}
+		inputText.value = "";
+	}
+
+	submitButton.addEventListener("click", addValue);
 	</script>
 </body></html>

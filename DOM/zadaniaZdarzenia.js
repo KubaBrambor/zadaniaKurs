@@ -47,3 +47,19 @@ getArticle[i].addEventListener("click", changeColor);
 }	
 
 3.
+var count = 0;
+var getBox = document.getElementById("box");
+var getP = document.getElementById("textCount");
+var colorArr = ["yellow", "green", "blue", "yellow"];
+function changeColor(event){
+	count++
+	getP.innerHTML = count;
+	var color = colorArr[count-1];
+	event.target.style.background = color;
+	if(count === 4){
+		count = 0;
+	}
+}
+getBox.addEventListener("click", changeColor);
+
+4.
