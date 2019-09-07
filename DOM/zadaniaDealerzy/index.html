@@ -90,6 +90,12 @@
 				font-size: 80%;
 				padding: 7px 0px 0px 20px;}
 		</style>
+		<script>
+		document.addEventListener('DOMContentLoaded', function(){
+		getAside = document.getElementsByTagName("aside");
+		topSellers = getAside[0].childNodes[1].children;
+		})
+		</script>
 		<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -164,5 +170,28 @@
 				DOM L2C
 			</footer>
 		</div><!-- .wrapper -->
-	<script src="zad2.js"></script>
+	<!-- <script src="zad2.js"></script> -->
+	<!-- <script>
+		var getAside = document.querySelectorAll("aside");
+		var topSellers = getAside[0].childNodes[1].children;
+	</script> -->
+
+	<script>
+
+	var getArticle = document.getElementsByTagName("article");
+	var colorArr = ["black", "red", "blue", "yellow", "pink", "brown", "purple"];
+	function changeColor(event){
+		var color = colorArr[Math.floor(Math.random()*colorArr.length)];
+		if(event.target.localName == "hgroup" || event.target.localName == "h2" || event.target.localName == "h3"){
+			for(let i=0; i<getArticle.length; i++){
+			getArticle[i].style.background="#f55b5b";
+		}
+		event.currentTarget.style.background = color;
+		}
+	}
+	
+	for(let i=0; i<getArticle.length; i++){
+	getArticle[i].addEventListener("click", changeColor);
+	}	
+	</script>
 </body></html>
