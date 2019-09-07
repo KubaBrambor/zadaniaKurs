@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button">KLIKNIJ</button>
+    <p id="content"></p>
+    </br>
+    <button id="button2">KLIKNIJ</button>
+    <p id="content2"></p>
+    <script>
+            var button = document.getElementById("button"),
+                content = document.getElementById("content");
+
+                button.addEventListener("click", () => {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://swapi.co/api/planets/1");
+                    xhr.responseType = "json";
+                    xhr.onload = function () {
+                        content.innerHTML = "<pre>" + xhr.response.name + "</pre>";
+                    }
+                    xhr.send();
+            })
+
+            var button2 = document.getElementById("button2"),
+                content2 = document.getElementById("content2");
+                numArr = ["1", "3", "6", "7", "8", "9", "10", "11"];
+                xhr2 = [];
+                
+                button2.addEventListener("click", () => {
+                    for(let i=0; i<numArr.length; i++){
+                    url = "https://swapi.co/api/people/" + numArr[i];
+                    xhr2[i] = new XMLHttpRequest();
+                    xhr2[i].open("GET", url);
+                    xhr2[i].responseType = "json";
+                    xhr2[i].onload = function () {
+                        var names = xhr2[i].response.name;
+                        var weight = xhr2[i].response.mass;
+                        var gender = xhr2[i].response.gender;
+                        var all = names + " weight: " + weight + " gender: " + gender;
+                        console.log(all);
+                    }
+                    xhr2[i].send();
+                    }
+            })
+            
+    </script> 
+</body>
+</html>
