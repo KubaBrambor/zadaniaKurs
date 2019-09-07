@@ -31,14 +31,19 @@ var topSellers = aside[0].childNodes[1].children;
 
 2.
 var getArticle = document.getElementsByTagName("article");
-var getHgroup = document.getElementsByTagName("hgroup");
 var colorArr = ["black", "red", "blue", "yellow", "pink", "brown", "purple"];
-
-function changeColor(){
-    var color = colorArr[Math.floor(Math.random()*colorArr.length)];
-    this.style.background = color;
+function changeColor(event){
+	var color = colorArr[Math.floor(Math.random()*colorArr.length)];
+	if(event.target.localName == "hgroup" || event.target.localName == "h2" || event.target.localName == "h3"){
+		for(let i=0; i<getArticle.length; i++){
+		getArticle[i].style.background="#f55b5b";
+	}
+	event.currentTarget.style.background = color;
+	}
 }
 
-for(let i=0; i>colorArr.length; i++){
-    getHgroup[i].addEventListener("click", changeColor);
-};
+for(let i=0; i<getArticle.length; i++){
+getArticle[i].addEventListener("click", changeColor);
+}	
+
+3.
