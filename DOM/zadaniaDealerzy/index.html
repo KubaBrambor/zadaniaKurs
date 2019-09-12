@@ -224,5 +224,27 @@
 	}
 
 	submitButton.addEventListener("click", addValue);
+
+
+	// zadanie 6.
+	var thirdArticle = document.getElementsByTagName("article")[2];
+	var lastParaph = document.createElement("p");
+	var button = document.createElement("button");
+	button.innerText = "Załaduj więcej";
+	thirdArticle.appendChild(button);
+	thirdArticle.insertBefore(lastParaph, button);
+
+
+
+	button.addEventListener("click", () => {
+	var response = new XMLHttpRequest();
+	response.open("GET", "http://localhost/js/masseratti.txt");
+	response.reponseType = "text";
+	response.onload = () => {
+		lastParaph.innerText = response.response;
+    };
+	response.send();
+	})
+
 	</script>
 </body></html>
