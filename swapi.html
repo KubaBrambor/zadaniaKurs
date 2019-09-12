@@ -7,18 +7,70 @@
     <title>Document</title>
 </head>
 <body>
-    <button id="button">KLIKNIJ</button>
+    <input type="text" id="inputText" placeholder="">
+    <button id="inputButton">Sprawdź</button>
+    <p id="inputContent"></p>
+    <br>
+    <button id="button">AKTORZY</button>
     <p id="content"></p>
-    </br>
-    <button id="button2">KLIKNIJ</button>
+    <br>
+    <button id="button2">AKTORZY</button>
     <p id="content2"></p>
     <script>
+
+
+
+// 7.
+// Skorzystaj ze strony SWAPI.html zawierającej prosty formularz.
+// 1a. Po kliknięciu w przycisk Aktorzy, wyświetl listę 10 pierwszych wyników z aktorami grającymi w SW.
+// 1b. Zapropgramuj prosty formularz pobierający dane z serwera dotyczące wskazanego aktora. Użyj identyfikatora ID, aby stworzyć zapytanie. Wynik zapytania powinien wyświetlić się w paragrafie ponieżej formularza
+// 1c. Zapropgramuj prosty formularz pobierający dane z serwera przefiltrowane pod katem imie postaci. Sprawdz w dokumentacji, jak nalezy zbudować URL do endpointa w celu otrzymania wynikow
+
+// 2a. Po kliknięciu w przycisk Filmy, wyświetl listę zawierającą tytuł filmu i datę premiery.
+// 2b. Zapropgramuj prosty formularz pobierający dane z serwera dotyczące wskazanego filmu. Użyj identyfikatora ID, aby stworzyć zapytanie. Wynik zapytania powinien wyświetlić się w paragrafie ponieżej formularza. Powinien zawierać listę aktorów, reżysera i producenta. Zastosuj kodowanie wookie. Znajdz informacje o tym kodowaniu w dokumentacji API.
+// 2c. Zapropgramuj prosty formularz pobierający dane z serwera przefiltrowane pod katemtytułu filmu. Sprawdz w dokumentacji, jak nalezy zbudować URL do endpointa w celu otrzymania wynikow
+            
+            
+            var inputValue;
+                getInput = document.getElementById("inputText");
+                getInputButton = document.getElementById("inputButton");
+                getInputParaph = document.getElementById("inputContent");
+                
+
+            var showValue = () => {
+                    inputValue = getInput.value;
+                    getInputParaph.innerText = inputValue;
+                    console.log(inputValue);
+                    getInput.value = "";
+                }
+            
+            getInput.onkeypress = (event) => {
+                if(event.keyCode === 13){
+                    getInputButton.click();
+                }
+            }
+
+            getInputButton.addEventListener("click", () => {
+                inputValue = getInput.value;
+                var respond = new XMLHttpRequest();
+                respond.open("GET", `https://swapi.co/api/people/?search=sky`);
+                respond.responseType = "json";
+                respond.onload = () => {
+                    getInputParaph.innerText = respond.response.results[0].name;
+                }
+                respond.send();
+                getInput.value = "";
+            });
+            
+            
+            
+            
             var button = document.getElementById("button"),
                 content = document.getElementById("content");
 
                 button.addEventListener("click", () => {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://swapi.co/api/planets/1");
+                    xhr.open("GET", "https://swapi.co/api/people");
                     xhr.responseType = "json";
                     xhr.onload = function () {
                         content.innerHTML = "<pre>" + xhr.response.name + "</pre>";
@@ -28,7 +80,8 @@
 
             var button2 = document.getElementById("button2"),
                 content2 = document.getElementById("content2");
-                numArr = ["1", "3", "6", "7", "8", "9", "10", "11"];
+                body = document.getElementsByTagName("body")[0];
+                numArr = ["1", "3", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
                 xhr2 = [];
                 
                 button2.addEventListener("click", () => {
@@ -38,11 +91,17 @@
                     xhr2[i].open("GET", url);
                     xhr2[i].responseType = "json";
                     xhr2[i].onload = function () {
+                        var paraph = document.createElement("p");
+                        
                         var names = xhr2[i].response.name;
                         var weight = xhr2[i].response.mass;
                         var gender = xhr2[i].response.gender;
-                        var all = names + " weight: " + weight + " gender: " + gender;
-                        console.log(all);
+                    if(names !== undefined){
+                            body.appendChild(paraph);
+                            paraph.innerText = names + " weight: " + weight + " gender: " + gender;
+                        } else {
+                        console.log(url)
+                        }
                     }
                     xhr2[i].send();
                     }
