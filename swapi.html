@@ -30,19 +30,20 @@
 // 2b. Zapropgramuj prosty formularz pobierający dane z serwera dotyczące wskazanego filmu. Użyj identyfikatora ID, aby stworzyć zapytanie. Wynik zapytania powinien wyświetlić się w paragrafie ponieżej formularza. Powinien zawierać listę aktorów, reżysera i producenta. Zastosuj kodowanie wookie. Znajdz informacje o tym kodowaniu w dokumentacji API.
 // 2c. Zapropgramuj prosty formularz pobierający dane z serwera przefiltrowane pod katemtytułu filmu. Sprawdz w dokumentacji, jak nalezy zbudować URL do endpointa w celu otrzymania wynikow
             
-            
+            //na stronie sąpodane wartości. można użyć pętli na pdostawie count.
+            //zadanie 1b,c
             var inputValue;
                 getInput = document.getElementById("inputText");
                 getInputButton = document.getElementById("inputButton");
                 getInputParaph = document.getElementById("inputContent");
-                
+                button2 = document.getElementById("button2");
+                button = document.getElementById("button");
+                content = document.getElementById("content");
+                content2 = document.getElementById("content2");
+                body = document.getElementsByTagName("body")[0];
+                numArr = ["1", "3", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
+                xhr2 = [];
 
-            var showValue = () => {
-                    inputValue = getInput.value;
-                    getInputParaph.innerText = inputValue;
-                    console.log(inputValue);
-                    getInput.value = "";
-                }
             
             getInput.onkeypress = (event) => {
                 if(event.keyCode === 13){
@@ -53,38 +54,39 @@
             getInputButton.addEventListener("click", () => {
                 inputValue = getInput.value;
                 var respond = new XMLHttpRequest();
-                respond.open("GET", `https://swapi.co/api/people/?search=sky`);
+                respond.open("GET", `https://swapi.co/api/people/?search=` + inputValue);
                 respond.responseType = "json";
                 respond.onload = () => {
-                    getInputParaph.innerText = respond.response.results[0].name;
+                    for(let i=0; i < respond.response.results.length; i++)
+                    {
+                        var paraph = document.createElement("p");
+                        body.insertBefore(paraph, button);
+                        paraph.innerText = respond.response.results[i].name;
+                    }
                 }
                 respond.send();
                 getInput.value = "";
             });
             
-            
-            
-            
-            var button = document.getElementById("button"),
-                content = document.getElementById("content");
 
                 button.addEventListener("click", () => {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://swapi.co/api/people");
+                    xhr.open("GET", "https://swapi.co/api/films/1/?format=wookiee");
                     xhr.responseType = "json";
                     xhr.onload = function () {
-                        content.innerHTML = "<pre>" + xhr.response.name + "</pre>";
+                        for (let i=0; i < xhr.response.wookie.length; i++){
+                            console.log(xhr.response.wookie[i])
+                        }
+                        content.innerHTML = "<pre>" + xhr.response.whrascwo + " " + xhr.response.created + " " + xhr.response.director + " " + xhr.response.characters + "</pre>";
                     }
                     xhr.send();
             })
 
-            var button2 = document.getElementById("button2"),
-                content2 = document.getElementById("content2");
-                body = document.getElementsByTagName("body")[0];
-                numArr = ["1", "3", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
-                xhr2 = [];
+            //zadanie 1a
                 
                 button2.addEventListener("click", () => {
+                    //zapytać o metodę .next
+                    
                     for(let i=0; i<numArr.length; i++){
                     url = "https://swapi.co/api/people/" + numArr[i];
                     xhr2[i] = new XMLHttpRequest();
