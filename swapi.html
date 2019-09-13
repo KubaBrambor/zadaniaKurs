@@ -68,16 +68,13 @@
                 getInput.value = "";
             });
             
-
+                //https://swapi.co/api/films/1/?format=wookiee
                 button.addEventListener("click", () => {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://swapi.co/api/films/1/?format=wookiee");
+                    xhr.open("GET", "https://swapi.co/api/films/1/");
                     xhr.responseType = "json";
                     xhr.onload = function () {
-                        for (let i=0; i < xhr.response.wookie.length; i++){
-                            console.log(xhr.response.wookie[i])
-                        }
-                        content.innerHTML = "<pre>" + xhr.response.whrascwo + " " + xhr.response.created + " " + xhr.response.director + " " + xhr.response.characters + "</pre>";
+                        content.innerHTML = "<pre>" + xhr.response.created + " " + xhr.response.director + " " + xhr.response.characters + "</pre>";
                     }
                     xhr.send();
             })
