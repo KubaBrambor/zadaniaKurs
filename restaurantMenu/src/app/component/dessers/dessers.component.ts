@@ -3,21 +3,22 @@ import { Desser } from '../../model/desser/desser';
 import { ServiceService } from '../../service/service.service';
 
 @Component({
-  selector: 'app-dessers',
+  selector: 'dessers',
   templateUrl: './dessers.component.html',
   styleUrls: ['./dessers.component.scss']
 })
 export class DessersComponent implements OnInit {
 
-  public dessers:Desser[];
+  public dessersMenu:Desser[];
 
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
     this.getDessers();
+    console.log(this.dessersMenu[0])
   }
 
   getDessers():void{
-    this.dessers = this.service.getDesser();
+    this.dessersMenu = this.service.getDesser();
   }
 }

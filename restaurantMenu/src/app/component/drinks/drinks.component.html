@@ -4,9 +4,6 @@
         <p>Cena {{drink.$price}} zł</p>
         <button class="button" (click)="drink.$hideFunc()">Rozwiń</button>
         <div class="hide" *ngIf="drink.$hide">
-            <p>Skład: {{drink.$ingridients}}</p>
-            <p>Alergeny: {{drink.$alergens}}</p>
+            <p>Mililitry: {{drink.$mililiters}}</p>
         </div>
 </div>
-
-<p>{{drink.$name}}</p>

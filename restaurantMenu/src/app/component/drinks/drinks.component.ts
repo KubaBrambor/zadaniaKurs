@@ -15,6 +15,7 @@ export class DrinksComponent implements OnInit {
 
   ngOnInit() {
     this.getDrinks();
+    console.log(this.drinksMenu[0])
   }
 
   getDrinks():void{
