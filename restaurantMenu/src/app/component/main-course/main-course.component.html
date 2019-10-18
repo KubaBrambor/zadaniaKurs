@@ -1,0 +1,10 @@
+<div class="mainContainer" *ngFor="let course of mainCourseMenu, index as i">
+        <p class="title">{{course.$name}}</p>
+        <p>ID: {{course.$id}}</p>
+        <p>Cena {{course.$price}} zł</p>
+        <button class="button" (click)="course.$hideFunc()">Rozwiń</button>
+        <div class="hide" *ngIf="course.$hide">
+            <p>Skład: {{course.$ingridients}}</p>
+            <p>Alergeny: {{course.$alergens}}</p>
+        </div>
+</div>
