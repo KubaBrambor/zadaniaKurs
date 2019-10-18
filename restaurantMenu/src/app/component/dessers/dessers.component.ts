@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Desser } from '../../model/desser/desser';
+import { ServiceService } from '../../service/service.service';
 
 @Component({
   selector: 'app-dessers',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DessersComponent implements OnInit {
 
-  constructor() { }
+  public dessers:Desser[];
+
+  constructor(private service: ServiceService) { }
 
   ngOnInit() {
+    this.getDessers();
   }
 
+  getDessers():void{
+    this.dessers = this.service.getDesser();
+  }
 }
